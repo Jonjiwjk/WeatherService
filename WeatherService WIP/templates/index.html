@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Weather Information</h1>
+    <div class="container">
+        <form method="post">
+            <label for="location">Enter Location:</label>
+            <input type="text" id="location" name="location" required>
+            <button type="submit">Get Weather</button>
+        </form>
+        {% if data %}
+            <div class="weather-info">
+                <h2>Weather Data</h2>
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Temperature</th>
+                        <th>Humidity</th>
+                        <th>Dew Point</th>
+                        <th>Freezing Rain Intensity</th>
+                        <th>Precipitation Probability</th>
+                        <th>Pressure (Surface Level)</th>
+                        <th>Rain Intensity</th>
+                        <th>Sleet Intensity</th>
+                        <th>Snow Intensity</th>
+                        <th>UV Index (0-10)</th>
+                        <th>Visibility</th>
+                    </tr>
+                    <tr>
+                        <td>{{ data['data']['time'][0:10]}} </td>    
+                        <td>{{ data['data']['time'][11:19]}} </td>                                                
+                        <td>{{ data['data']['values']['temperature'] }}°C</td>
+                        <td>{{ data['data']['values']['humidity'] }}%</td>
+                        <td>{{ data['data']['values']['dewPoint'] }}°C</td>
+                        <td>{{ data['data']['values']['freezingRainIntensity'] }} mm/hr</td>
+                        <td>{{ data['data']['values']['precipitationProbability'] }}%</td>
+                        <td>{{ data['data']['values']['pressureSurfaceLevel'] }} hPa</td>
+                        <td>{{ data['data']['values']['rainIntensity'] }} mm/hr</td>
+                        <td>{{ data['data']['values']['sleetIntensity'] }} mm/hr</td>
+                        <td>{{ data['data']['values']['snowIntensity'] }} mm/hr</td>
+                        <td>{{ data['data']['values']['uvIndex'] }}</td>
+                        <td>{{ data['data']['values']['visibility'] }} km</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <th>Weather Code</th>
+                        <th>Wind Direction</th>
+                        <th>Wind Gust</th>
+                        <th>Wind Speed</th>
+                        <th>Location</th>
+                    </tr>
+                    <tr>
+                        <td><img src="" alt="{{ data['data']['values']['weatherCode'] }}"></td>
+                        <td>{{ data['data']['values']['windDirection'] }}°</td>
+                        <td>{{ data['data']['values']['windGust'] }} m/s</td>
+                        <td>{{ data['data']['values']['windSpeed'] }} m/s</td>
+                        <td>{{ data['location']['name'] }} (Lat: {{ data['location']['lat'] }}, Lon: {{ data['location']['lon'] }})</td>
+                    </tr>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
