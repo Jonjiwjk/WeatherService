@@ -9,8 +9,8 @@ Simple App that shows weather information in real time
 
 ### Linux
  - Run the bash file, to install all necessary packets
- - Run the app.py, enjoy your new app 💀
+ - Run the app.py, enjoy your new app
 
 ### Windows
  - Run the batch file, to install all necessary packets
- - Run the app.py, enjoy your new app :suspect:
+ - Run the app.py, enjoy your new app
